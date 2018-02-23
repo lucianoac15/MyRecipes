@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="br.com.lucianoac.recipes">
+
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.example.android.contentprovidersample.provider.READ_WRITE" />
+
+    <application
+        android:name="br.com.lucianoac.recipes.RecipesApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <activity
+            android:name="br.com.lucianoac.recipes.ui.main.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="br.com.lucianoac.recipes.ui.steps.StepsSliderActivity"
+            android:label="@string/title_step_detail"
+            android:parentActivityName="br.com.lucianoac.recipes.ui.recipe.BakingActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.lucianoac.recipes.ui.recipe.BakingActivity" />
+        </activity>
+
+        <activity
+            android:name="br.com.lucianoac.recipes.ui.recipe.BakingActivity"
+            android:label="@string/title_activity"
+            android:parentActivityName="br.com.lucianoac.recipes.ui.main.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.lucianoac.recipes.ui.main.HomeActivity" />
+        </activity>
+
+        <provider
+            android:name="br.com.lucianoac.recipes.db.IngredientsContentProvider"
+            android:authorities="br.com.lucianoac.recipes.provider"
+            android:exported="true"
+            android:grantUriPermissions="false"
+            android:permission="com.example.android.contentprovidersample.provider.READ_WRITE" />
+
+
+        <receiver android:name="br.com.lucianoac.recipes.ui.widget.IngredientsWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ingredients_widget_info" />
+        </receiver>
+
+        <service
+            android:name="br.com.lucianoac.recipes.ui.widget.IngredientsListService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+
+        <service android:name="br.com.lucianoac.recipes.ui.widget.WidgetUpdateService" />
+
+
+    </application>
+
+</manifest>

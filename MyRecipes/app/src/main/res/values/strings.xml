@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Receitas</string>
+    <string name="title_step_detail">Detalhe do Passo</string>
+    <string name="title_activity">"Receita "</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="steps">Passos</string>
+    <string name="api_url">https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/</string>
+    <string name="error_msg">Ocorreu um erro ao executar a operação solicitada</string>
+</resources>
